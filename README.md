@@ -1,3 +1,3 @@
-Assingment 1:
+Assignment 1:
 
-This assingment is an introduction to the basics of Git
+This assignment is an introduction to the basics of Git
