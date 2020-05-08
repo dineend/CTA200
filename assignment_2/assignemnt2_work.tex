@@ -1,0 +1,168 @@
+\documentclass[11pt]{exam}
+\newcommand{\myname}{Danielle Dineen} %Write your name in here
+
+\newcommand{\myUCO}{CTA200H}
+
+\newcommand{\myhwtype}{Assignment}
+\newcommand{\myhwnum}{2} %Homework set number
+
+
+
+% Prefix for numedquestion's
+\newcommand{\questiontype}{Question}
+
+% Use this if your "written" questions are all under one section
+% For example, if the homework handout has Section 5: Written Questions
+% and all questions are 5.1, 5.2, 5.3, etc. set this to 5
+% Use for 0 no prefix. Redefine as needed per-question.
+\newcommand{\writtensection}{0}
+
+\usepackage{amsmath, amsfonts, amsthm, amssymb}  % Some math symbols
+\usepackage{enumerate}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage[all]{xy}
+\usepackage{wrapfig}
+\usepackage{fancyvrb}
+\usepackage[T1]{fontenc}
+\usepackage{listings}
+
+\usepackage{amssymb}
+
+
+
+
+\usepackage{mathtools}
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+\DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
+\DeclarePairedDelimiter{\card}{\vert}{\vert}
+
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt plus 1pt}
+\pagestyle{empty}
+
+\def\indented#1{\list{}{}\item[]}
+\let\indented=\endlist
+
+\newcounter{questionCounter}
+\newcounter{partCounter}[questionCounter]
+
+\newenvironment{namedquestion}[1][\arabic{questionCounter}]{%
+    \addtocounter{questionCounter}{1}%
+    \setcounter{partCounter}{0}%
+    \vspace{.2in}%
+        \noindent{\bf #1}%
+    \vspace{0.3em} \hrule \vspace{.1in}%
+}{}
+
+\newenvironment{numedquestion}[0]{%
+	\stepcounter{questionCounter}%
+    \vspace{.2in}%
+        \ifx\writtensection\undefined
+        \noindent{\bf \questiontype \; \arabic{questionCounter}. }%
+        \else
+          \if\writtensection0
+          \noindent{\bf \questiontype \; \arabic{questionCounter}. }%
+          \else
+          \noindent{\bf \questiontype \; \writtensection.\arabic{questionCounter} }%
+        \fi
+    \vspace{0.3em} \hrule \vspace{.1in}%
+}{}
+
+\newenvironment{alphaparts}[0]{%
+  \begin{enumerate}[label=\textbf{(\alph*)}]
+}{\end{enumerate}}
+
+\newenvironment{arabicparts}[0]{%
+  \begin{enumerate}[label=\textbf{\arabic{questionCounter}.\arabic*})]
+}{\end{enumerate}}
+
+\newenvironment{questionpart}[0]{%
+  \item
+}{}
+
+\newcommand{\answerbox}[1]{
+\begin{framed}
+\vspace{#1}
+\end{framed}}
+
+\pagestyle{head}
+
+\headrule
+\header{\textbf{\myclass\ \mylecture\mysection}}%
+{\textbf{\myname\ (\myUCO)}}%
+{\textbf{\myhwtype\ \myhwnum}}
+
+\begin{document}
+\thispagestyle{plain}
+\begin{center}
+  {\Large \myclass{} \myhwtype{} \myhwnum} \\
+  \myname{} (\myUCO{}) \\
+  \today
+\end{center}
+
+
+%Here you can enter answers to homework questions
+
+\begin{numedquestion}
+\textbf{Method}
+
+The given question is known as the Mandelbrot set. In order to iterate through the sequence the function mandelcount was defined which starts with zero and adds the square of the next complex number to the current. If the condition of $|Z_n|< 2 $ was meet then the sequence did not converge and a pixel colour for the complex number z, with real number, x, and complex number, y, was assigned as white and if the condition was meet then the pixel colour was assigned as black. Once this was done the image was plotted using the module pillow. The image was then modified to assign a colour pixel when $|Z_n|$ $\nless$ 2  on the rgb scale depending on how far away the coordinate was from meeting the condition where red is very not convergent. 
+
+
+
+
+\textbf{Analysis}
+
+\\
+
+If a sequence converges it means that $Z_n$ never gets very large when n is large. The condition of $ |Z_n| > 2 $ given is that in which the iteration will never converge. This is shown in figure 1. which is a colour map consisting of the real and imaginary axis of the complex plane where if the sequence converges the plot is black otherwise it is white. The parts of the sequence at which the series did not converge where then assigned pixel colours representing how close the sequence is to crossing the threshold of 2. This may be seen in figure 2. Zooming in  the plot, as seen in figure 3, the  resolution becomes fuzzy. This is due to that pixel size was assigned a certain length and height and then that pixel given a colour. The size of the pixel is not extremely small which gives the image its blockiness. The smaller the pixel size the more clear the resolution of the image which is in fact infinite. That is the boundary of this set is a fractal of infinite length. 
+
+\begin{figure}[h!]
+    \centering
+    \caption{Mandelbrot set fractal pattern}
+    \label{figure.1}
+    \includegraphics[width=8cm]{13.png}
+    
+\end{figure}
+
+\begin{figure}[h!]
+    \centering
+    \caption{Mandelbrot set convergence}
+    \label{figure.2}
+    \includegraphics[width=8cm]{12.png}
+    
+\end{figure}
+
+
+\begin{figure}[h!]
+ \caption{Zoom of Mandelbrot set fractal pattern with colour scale}
+    \label{figure.1}
+    \centering
+    \includegraphics[width=8cm]{2.png}
+    
+\end{figure}
+
+
+\break{}
+
+\end{numedquestion}
+
+
+\begin{numedquestion}
+
+\textbf{Method}
+
+
+
+\textbf{Analysis}
+
+
+ 
+\end{numedquestion}
+
+
+
+\end{document}
