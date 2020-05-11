@@ -109,7 +109,7 @@
 \begin{numedquestion}
 \textbf{Method}
 
-The given question is known as the Mandelbrot set. In order to iterate through the sequence the function mandelcount was defined which starts with zero and adds the square of the next complex number to the current. If the condition of $|Z_n|< 2 $ was meet then the sequence did not converge and a pixel colour for the complex number z, with real number, x, and complex number, y, was assigned as white and if the condition was meet then the pixel colour was assigned as black. Once this was done the image was plotted using the module pillow. The image was then modified to assign a colour pixel when $|Z_n|$ $\nless$ 2  on the rgb scale depending on how far away the coordinate was from meeting the condition where red is very not convergent. 
+The given sequence is known as the Mandelbrot set. In order to iterate through the sequence the function mandelcount was defined which starts with zero and adds the square of the next complex number to the current. If the condition of $|Z_n|< 2 $ was not met then the sequence did not converge and a pixel colour for the complex number z, with real number, x, and complex number, y, was assigned as white and if the condition was met then the pixel colour was assigned as black. Once this was done the image was plotted using the module pillow. The image was then modified to assign a colour pixel when $|Z_n|$ $\nless$ 2  on the rgb scale depending on how far away the sequence with values x and y on the complex plane were from meeting the condition. Red was given to coordinates in which the series was not at all close to convergence and blue to those that were. 
 
 
 
@@ -118,7 +118,7 @@ The given question is known as the Mandelbrot set. In order to iterate through t
 
 \\
 
-If a sequence converges it means that $Z_n$ never gets very large when n is large. The condition of $ |Z_n| > 2 $ given is that in which the iteration will never converge. This is shown in figure 1. which is a colour map consisting of the real and imaginary axis of the complex plane where if the sequence converges the plot is black otherwise it is white. The parts of the sequence at which the series did not converge where then assigned pixel colours representing how close the sequence is to crossing the threshold of 2. This may be seen in figure 2. Zooming in  the plot, as seen in figure 3, the  resolution becomes fuzzy. This is due to that pixel size was assigned a certain length and height and then that pixel given a colour. The size of the pixel is not extremely small which gives the image its blockiness. The smaller the pixel size the more clear the resolution of the image which is in fact infinite. That is the boundary of this set is a fractal of infinite length. 
+If a sequence converges it means that $Z_n$ never gets very large when n is large. The condition of $ |Z_n| > 2 $ given is that in which the iteration will never converge. This is shown in figure 1. which is a colour map consisting of the real and imaginary axis of the complex plane where if the sequence converges the plot is black otherwise it is white. The parts of the sequence at which the series did not converge where then assigned pixel colours representing how close the sequence is to crossing the threshold of 2. This may be seen in figure 2. Zooming in  the plot, as seen in figure 3, the  resolution becomes fuzzy. This is due to that pixel size was assigned a certain length and height and then that pixel given a colour. The size of the pixel is not extremely small which gives the image its blockiness. The smaller the pixel size the more clear the resolution of the image which is in fact infinite. That is, the boundary of this set is a fractal of infinite length. 
 
 \begin{figure}[h!]
     \centering
@@ -154,10 +154,32 @@ If a sequence converges it means that $Z_n$ never gets very large when n is larg
 \begin{numedquestion}
 
 \textbf{Method}
+In order to solve these differential equations the scipy module odeint was used. The initial values for susceptible individuals, infected individuals and recovered individuals were set as given in the problem and function definitions of the differential equations were written. The ode was then solved using odeint and plotted using matplotlib. The contact parameter given by $\beta$ represents the percentage of the total population an individual is in contact with per day. Appropriate values are between zero and one. The recovery rate parameter $\gamma$ represents the number of days a person stays in the infected category and the number of days they are able to pass it on to susceptible individuals. Appropriate values for $\gamma$ in units of $\frac{1}{days}$ is from about $\frac{1}{7}$ to $\frac{1}{14}$, which means the illness last from 1 to 2 weeks . In order to introduce a new variable, D, for number of deaths a new parameter $\mu$ must be included which represents the death rate per day of infected people. Another term including this parameter must be subtracted from the recovery rate and a new differential equation representing the mortality rate, $\frac{dD}{dt}$, must be included. An appropriate number for $\mu$, the percentage of people who die from the infection, is between zero and one.
 
-
+\break{}
 
 \textbf{Analysis}
+
+Figure 4 shows the SIR model with $\beta$=0.4 and  $\gamma$=1/8. The susceptible curve is a logistic graph starting at a value equal to the total population and  reaches an equilibrium of zero as the disease fades out of the population. The number of infected individuals is initially one, peaks at the same time the number of susceptible individuals is equal to the number of recovered individuals and falls off from there. The individuals who are recovered with immunity begin at zero and follow a logistic curve to the equilibrium of the total population. When $\beta$ is increased, the disease is exposed to more individuals per day and so more people become infected in a shorter amount of time. The maximum number of people infected on a single day is then larger and reaches this critical point earlier. When $\gamma$ is increased, the mean number of people who recover in a day is higher and the day in which the maximum number of individuals are infected is later because people cannot spread the infection for as long and come out of the infected category more quickly. As $\mu$ increases, the deadlier the disease in consideration and so more people die.  Figure 5 shows the new system of equations with a $\mu$=1/50, that is 2\% of people die from the infection, and the same values of $\beta$ and $\gamma$ as in figure 4. The graph shows that the number of deaths approaches a maximum logistically. As well, the final number of recovered individuals is less than that in figure 4. as not all individuals move out of the infected category to the recovered category. 
+
+
+\begin{figure}[h!]
+ \caption{SIR Model of Disease}
+    \label{figure.4}
+    \centering
+    \includegraphics[width=8cm]{SIR.png}
+
+\end{figure}
+
+
+
+\begin{figure}[t]
+ \caption{SIR Model of Disease with Mortality Rate}
+    \label{figure.5}
+    \centering
+    \includegraphics[width=8cm]{SIRD.png}
+
+\end{figure}
 
 
  
@@ -166,3 +188,6 @@ If a sequence converges it means that $Z_n$ never gets very large when n is larg
 
 
 \end{document}
+
+
+
