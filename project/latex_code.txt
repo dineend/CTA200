@@ -1,0 +1,290 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%2345678901234567890123456789012345678901234567890123456789012345678901234567890
+%        1         2         3         4         5         6         7         8
+
+\documentclass[letterpaper, 10 pt, conference]{ieeeconf}  % Comment this line out
+                                                          % if you need a4paper
+%\documentclass[a4paper, 10pt, conference]{ieeeconf}      % Use this line for a4
+                                                          % paper
+
+\IEEEoverridecommandlockouts                              % This command is only
+                                                          % needed if you want to
+                                                          % use the \thanks command
+\overrideIEEEmargins
+% See the \addtolength command later in the file to balance the column lengths
+% on the last page of the document
+
+% This is needed to prevent the style file preventing citations from linking to 
+% the bibliography
+\makeatletter
+\let\NAT@parse\undefined
+\makeatother
+
+\usepackage[dvipsnames]{xcolor}
+
+\newcommand*\linkcolours{ForestGreen}
+
+\usepackage{times}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{gensymb}
+\usepackage{amsmath}
+\usepackage{breakurl}
+\def\UrlBreaks{\do\/\do-}
+\usepackage{url,hyperref}
+\hypersetup{
+colorlinks,
+linkcolor=\linkcolours,
+citecolor=\linkcolours,
+filecolor=\linkcolours,
+urlcolor=\linkcolours}
+
+\usepackage{algorithm}
+\usepackage{algorithmic}
+
+\usepackage[labelfont={bf},font=small]{caption}
+\usepackage[none]{hyphenat}
+
+\usepackage{mathtools, cuted}
+
+\usepackage[noadjust, nobreak]{cite}
+\def\citepunct{,\,} % Style file defaults to listing references separately
+
+\usepackage{tabularx}
+\usepackage{amsmath}
+
+\usepackage{float}
+
+\usepackage{pifont}% http://ctan.org/pkg/pifont
+\newcommand{\cmark}{\ding{51}}%
+\newcommand{\xmark}{\ding{55}}%
+
+\newcommand*\diff{\mathop{}\!\mathrm{d}}
+\newcommand*\Diff[1]{\mathop{}\!\mathrm{d^#1}}
+\newcommand*\imgres{600}
+
+\newcommand*\GitHubLoc{https://github.com/Jeffrey-Ede/ALRC}
+
+\newcolumntype{Y}{>{\centering\arraybackslash}X}
+
+%\usepackage{parskip}
+
+\usepackage[]{placeins}
+
+% \usepackage{epstopdf}
+% \epstopdfDeclareGraphicsRule{.tif}{png}{.png}{convert #1 \OutputFile}
+% \AppendGraphicsExtensions{.tif}
+
+\newcommand\extraspace{3pt}
+
+\usepackage{placeins}
+
+\usepackage{tikz}
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+            \node[shape=circle,draw,inner sep=0.8pt] (char) {#1};}}
+            
+\usepackage[framemethod=tikz]{mdframed}
+
+\usepackage{afterpage}
+
+\usepackage{stfloats}
+
+\usepackage{atbegshi}
+\newcommand{\handlethispage}{}
+\newcommand{\discardpagesfromhere}{\let\handlethispage\AtBeginShipoutDiscard}
+\newcommand{\keeppagesfromhere}{\let\handlethispage\relax}
+\AtBeginShipout{\handlethispage}
+
+\usepackage{comment}
+\usepackage{hyperref}
+
+%\usepackage[1,2,3,5,6,7]{pagesel} %Discard page 4 as it is blank
+
+% The following packages can be found on http:\\www.ctan.org
+%\usepackage{graphics} % for pdf, bitmapped graphics files
+%\usepackage{epsfig} % for postscript graphics files
+%\usepackage{mathptmx} % assumes new font selection scheme installed
+%\usepackage{times} % assumes new font selection scheme installed
+%\usepackage{amsmath} % assumes amsmath package installed
+%\usepackage{amssymb}  % assumes amsmath package installed
+
+\title{\LARGE \bf Sensitivity Corrections of CHIME for FRB repeating source R3
+
+}
+
+%\author{ \parbox{3 in}{\centering Huibert Kwakernaak*
+%         \thanks{*Use the $\backslash$thanks command to put information here}\\
+%         Faculty of Electrical Engineering, Mathematics and Computer Science\\
+%         University of Twente\\
+%         7500 AE Enschede, The Netherlands\\
+%         {\tt\small h.kwakernaak@autsubmit.com}}
+%         \hspace*{ 0.5 in}
+%         \parbox{3 in}{ \centering Pradeep Misra**
+%         \thanks{**The footnote marks may be inserted manually}\\
+%        Department of Electrical Engineering \\
+%         Wright State University\\
+%         Dayton, OH 45435, USA\\
+%         {\tt\small pmisra@cs.wright.edu}}
+%}
+
+\author{Danielle Dineen, supervisor Dr. Paul Scholz} % <-this % stops a space
+
+
+
+% \author{Jeffrey M. Ede$^{1}$ and Richard Beanland$^{2}$% <-this % stops a space
+% \thanks{*This work was not supported by any organization}% <-this % stops a space
+% \thanks{$^{1}$H. Kwakernaak is with Faculty of Electrical Engineering, Mathematics and Computer Science,
+%         University of Twente, 7500 AE Enschede, The Netherlands
+%         {\tt\small h.kwakernaak at papercept.net}}%
+% \thanks{$^{2}$P. Misra is with the Department of Electrical Engineering, Wright State University,
+%         Dayton, OH 45435, USA
+%         {\tt\small p.misra at ieee.org}}%
+% }
+
+
+\begin{document}
+
+
+\maketitle
+\thispagestyle{empty}
+\pagestyle{empty}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\section{INTRODUCTION}
+
+Working with supervisor Dr. Paul Scholz on Fast Radio Bursts (FRB), the given project was to account for the sensitivity of the CHIME radio telescope and correct the spectra of multiple events from FRB repeater R3. Fast Radio Burst are phenomena that have only recently been documented, characterized as bright millisecond radio bursts with large excess dispersion measures suggesting extragalatic origins. R3 is one of the only known FRB sources with a periodic event timing and has been very well localized so its position is known to great precision. Spectra are corrected for sensitivity of FRB events 71784510, 20425523, 23491552, 23588210, 40363754, and 83984528. 
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Method}
+
+In order to correct for the sensitivity of CHIME, a model known as the Beam Model $^{[1]}$ was applied. The Beam model takes in the beam ids, positional arguments and an array of frequencies and gives back a multidimensional array for which the elements of single rows are the various sensitivity of the given frequency which has been calculated for each beam and position. The sensitivity of the beam is dependent on the beam id which is one of the 1024 antenna, position x and y, measured in degrees from the origin and frequency of the spectra to be measured which are on the order of hundreds of Megahertz. The output spectra of the FRB from the input intensity data may be mathematically represented by equation (\ref{equ}).
+
+
+\begin{equation}
+I_{corrected}=\frac{I_{original}(t,\lambda)}{sens(beam,x,y,\lambda)} \label{equ}
+\end{equation}
+
+
+For each event one beam with the highest signal to noise ratio (SNR) was used for the beam id, the position was held constant at the right ascension (RA) and declination (DEC) of R3 which is 29.503125, 65.716756 respectively. This means that the sensitivity was a single array consisting of elements which corresponded to the sensitivity of the beam at a frequency in the original array with the same index number. As the observed response must be divided out, the sensitivity array was then converted so each element was $\frac{1}{sensitivity}$. The intensity matrix was then multiplied by the manipulated sensitivity matrix to output the intensities of the FRB. These output values give the intensity of the spectra for the FRB event independent of the sensitivity of the beam. 
+
+
+\vspace{10mm}
+The following are contour plots of the uncorrected and corrected spectra of FRB events.  
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.97\columnwidth]{1.png}
+\caption{Intensity of FRB event 71784510}
+\label{original Intensity}
+\end{figure}
+
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.97\columnwidth]{2.png}
+\caption{Corrected Intensity of FRB event 71784510 }
+\label{Corrected Intensity}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.97\columnwidth]{3.png}
+\caption{Intensity of FRB event 20425523 }
+\label{corrected model}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.97\columnwidth]{4.png}
+\caption{Corrected Intensity of FRB event 20425523}
+\label{corrected model}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.97\columnwidth]{5.png}
+\caption{Intensity of FRB event 23491522}
+\label{corrected model}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.97\columnwidth]{6.png}
+\caption{Corrected Intensity of FRB event 23491522}
+\label{corrected model}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.97\columnwidth]{7.png}
+\caption{Intensity of FRB event 23588210}
+\label{corrected model}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.97\columnwidth]{8.png}
+\caption{Corrected Intensity of FRB event 23588210}
+\label{corrected model}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.97\columnwidth]{9.png}
+\caption{Intensity of FRB event 40363754}
+\label{corrected model}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.97\columnwidth]{10.png}
+\caption{Corrected Intensity of FRB event 40363754}
+\label{corrected model}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.97\columnwidth]{11.png}
+\caption{Intensity of FRB event 83984528}
+\label{corrected model}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.97\columnwidth]{12.png}
+\caption{Corrected Intensity of FRB event 83984528}
+\label{corrected model}
+\end{figure}
+
+\\
+
+\break{}
+
+\newpage{}
+
+\section{Analysis}
+
+The FRB event from R3 with the highest SNR was 71784510 and so is used an example for the code. Figure~\ref{original Intensity} is the intensity of the spectra of the event before taking into account sensitivity and figure~\ref{Corrected Intensity} is the corrected spectra using the Beam Model. The contour plots have axes of time and frequency where the milisecond FRB can be seen to have a spectra ranging from approximately 600-1000 MHZ.  
+
+
+\section{Source Code}
+
+Source code for example FRB event 71784510 corrected for sensitivity of CHIME is available in at \url{https://dineend@github.com/dineend/CTA200.git}
+
+
+\begin{thebibliography}
+[1] CHIME. Beam model. CHIME FRB Collaboration.
+\end{thebibliography}
+
+
+
+
+\clearpage
+
+\end{document}
