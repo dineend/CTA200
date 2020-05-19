@@ -163,11 +163,11 @@ Working with supervisor Dr. Paul Scholz on Fast Radio Bursts (FRB), the given pr
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Method}
 
-In order to correct for the sensitivity of CHIME, a model known as the Beam Model $^{[1]}$ was applied. The Beam model takes in the beam ids, positional arguments and an array of frequencies and gives back a multidimensional array for which the elements of single rows are the various sensitivity of the given frequency which has been calculated for each beam and position. The sensitivity of the beam is dependent on the beam id which is one of the 1024 antenna, position x and y, measured in degrees from the origin and frequency of the spectra to be measured which are on the order of hundreds of Megahertz. The output spectra of the FRB from the input intensity data may be mathematically represented by equation (\ref{equ}).
+In order to correct for the sensitivity of CHIME, a model known as the Beam Model $^{[1]}$ was applied. The Beam model takes in the beam ids, positional arguments and an array of frequencies and gives back a multidimensional array for which the elements of single rows are the various sensitivity of the given frequency which has been calculated for each beam and position. The sensitivity of the beam is dependent on the beam id which is one of the 1024 antenna, position x and y, measured in degrees from the origin and frequency, $\nu$ of the spectra to be measured which are on the order of hundreds of Megahertz. The output spectra of the FRB from the input intensity data may be mathematically represented by equation (\ref{equ}).
 
 
 \begin{equation}
-I_{corrected}=\frac{I_{original}(t,\lambda)}{sens(beam,x,y,\lambda)} \label{equ}
+I_{corrected}=\frac{I_{original}(t,\nu)}{sens(beam,x,y,\nu)} \label{equ}
 \end{equation}
 
 
